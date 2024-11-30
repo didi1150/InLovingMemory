@@ -26,6 +26,7 @@ public class Rating : MonoBehaviour
     public int _pointsAddedForRightDecoration;
     public int _pointsAddedForRightName;
 
+    // score Grenzen
     private static int _mediumPerformanceScore;
     private static int _goodPerformanceScore;
     
@@ -44,10 +45,38 @@ public class Rating : MonoBehaviour
     
     private  void TestRequestedObjectsPresent()
     {
-        RemoveNullInPlacedDecoration();
+        if (_placedDecoration == null)
+        {
+            Debug.Log("placedDecoration is null");
+        }
+        for (int i = 0; i < _taskData.requiredDecoration.Count(); i++)
+        {
+            DecorationData requiredDeco = _taskData.requiredDecoration[i];
+            for (int j = 0; j < _placedDecoration.Count; j++)
+            {
+                if (requiredDeco.Equals(_placedDecoration[j].getData()))
+                {
+                    Debug.Log("placedDecoraction is right");
+                    _score += _pointsAddedForRightDecoration;   
+                }
+            }
+        }
         
+        
+        /*Debug.Log(_placedDecoration.Count + "before");
+        RemoveNullInPlacedDecoration();
+        Debug.Log(_placedDecoration.Count + "after");
+        
+
+        if (_placedDecoration == null)
+        {
+            Debug.Log("placedDecoration is null");
+        }
+        
+        Debug.Log("list size: " + _placedDecoration.Count);
         int achivedScorePoints = 0;
-        _placedDecoration = _placedDecoration.OfType<Decoration>().ToList();
+
+        //_placedDecoration = _placedDecoration.OfType<Decoration>().ToList();
         
         // teste für alle wichtigen Objekten, ob sie plaziert wurden
         for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
@@ -64,39 +93,41 @@ public class Rating : MonoBehaviour
         }
         _score += achivedScorePoints;
         Debug.Log("score after TestRequestedObjectsPresent: " + _score);
+        */
     }
     
     public static void ReadInput(string s)
     {
         _writtenOnGrave = s;
-        Debug.Log(_writtenOnGrave);
     }
     
     // ist der Name auf der Grabsteinplakette enthalten
     private void TestCorrectNameOnGrave()
     {
-        if (_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
+        if (_writtenOnGrave != null &&_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
         {
-           // Debug.Log("contains name");
             _score += _pointsAddedForRightName;
         }
-        else
-        {
-           // Debug.Log("Does not contain name");
-        }
+        Debug.Log(_score);
     }
     
-    // überprüfe, ob Liste Null enthällt und bereinige sie
     private static void RemoveNullInPlacedDecoration()
     {
         if (_placedDecoration == null)
         {
             return;
         }
-        
-        _placedDecoration.RemoveAll(item => item == null);
-    }
 
+       for (int i = 0; i < _placedDecoration.Count; i++)
+        {
+            if (_placedDecoration[i] == null)
+            {
+                _placedDecoration.RemoveAt(i);
+            }
+        }
+        
+    }
+    
     private static PlayerPerformance EvaluatePlayerPerformance()
     {
         if (_score < _mediumPerformanceScore)

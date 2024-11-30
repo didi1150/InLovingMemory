@@ -8,7 +8,6 @@ public class DecorArea : MonoBehaviour, IPointerClickHandler
 {
     private static List<DecorArea> _decorAreas = new List<DecorArea>();
     
-    
     public DecorationData.PlacementType type;
 
     private CanvasGroup group;
