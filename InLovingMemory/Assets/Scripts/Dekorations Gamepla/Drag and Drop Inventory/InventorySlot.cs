@@ -14,21 +14,27 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void Awake()
     {
-        displayImage = GetComponent<Image>();
+        displayImage = transform.GetChild(0).GetComponent<Image>();
         decorationPrefab = Resources.Load(decorationPrefabPath) as GameObject;
     }
 
     public void setData(DecorationData data)
     {
         decoration = data;
-        displayImage.sprite = decoration.displayImage;
+        if (decoration)
+        {
+            displayImage.sprite = decoration.displayImage;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!GameManager.somethingSelected())
         {
-            instantiateDecoration(eventData.position);
+            if (decoration != null)
+            {
+                instantiateDecoration(eventData.position);
+            }
         }
 
     }
