@@ -1,47 +1,103 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Rating : MonoBehaviour
 {
-    // Auftragdetails 
-    private static List<Decoration> _placedDecoration;
-    private static List<Decoration> _requestedDecorations;
+    private enum PlayerPerformance
+    {
+        Bad,
+        Medium,
+        Good
+    }
+    
+    // Liste an platzierten Gegenständen aus GameManager
+    private static List<Decoration> _placedDecoration; 
+    
+    // Auszuführender task
+    [SerializeField] private TaskData _taskData;
+    
+    // score Punkte
+    public int _pointsAddedForRightDecoration;
+    public int _pointsAddedForRightName;
+
+    private static int _mediumPerformanceScore;
+    private static int _goodPerformanceScore;
+    
     private static int _score = 0;
     private static bool _ratingPerformed = false;
 
+    // eingegebener Text
+    private static string _writtenOnGrave;
+    
+    
+    //---------------------------------//
     private void Awake()
     {
         _placedDecoration = GameManager.getPlacedDecoration();
     }
-
-    // Abgleich mit requirement Liste (sind alle Objekte enthalten)
-    private static void TestRequestedObjectsPresent()
+    
+    private  void TestRequestedObjectsPresent()
     {
         int achivedScorePoints = 0;
+        
+        // teste für alle wichtigen Objekten, ob sie plaziert wurden
+        for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
+        {
+            DecorationData requiredDecoration = _taskData.requiredDecoration[i];
+
+            for (int j = 0; j < _placedDecoration.Count; j++)
+            {
+                if (requiredDecoration.Equals(_placedDecoration[j].getData()))
+                {
+                    achivedScorePoints += _pointsAddedForRightDecoration;
+                }
+            }
+        }
         _score += achivedScorePoints;
+        Debug.Log("score after TestRequestedObjectsPresent: " + _score);
     }
     
-    
-    // wird Mitte der Hitbox durch ein anderes Objekt verdeckt?
-    private static void TestRequestedObjectsOcclusion()
+    public static void ReadInput(string s)
     {
-        // teste Occlussion für alle required Objects
-        
-        int achivedScorePoints = 0;
-        // finde Mitte des Dekorechtecks
-        _score += achivedScorePoints;
+        _writtenOnGrave = s;
+        Debug.Log(_writtenOnGrave);
     }
     
     // ist der Name auf der Grabsteinplakette enthalten
-    private static void TestCorrectNameOnGrave()
+    private void TestCorrectNameOnGrave()
     {
-        int achivedScorePoints = 0;
-        _score += achivedScorePoints;
+        if (_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
+        {
+            Debug.Log("contains name");
+            _score += _pointsAddedForRightName;
+        }
+        else
+        {
+            Debug.Log("Does not contain name");
+        }
     }
 
+    private static PlayerPerformance EvaluatePlayerPerformance()
+    {
+        if (_score < _mediumPerformanceScore)
+        {
+            return PlayerPerformance.Bad;
+        }
+        else if (_score >= _mediumPerformanceScore && _score < _goodPerformanceScore)
+        {
+            return PlayerPerformance.Medium;
+        }
+        else
+        {
+            return PlayerPerformance.Good;
+        }
+    }
+    
     public static void DisableGameManager()
     {
         
@@ -53,8 +109,8 @@ public class Rating : MonoBehaviour
         
         TestCorrectNameOnGrave();
         TestRequestedObjectsPresent();
-        TestRequestedObjectsOcclusion();
+
+        EvaluatePlayerPerformance();
         _ratingPerformed = true;
-        Debug.Log("clicked");
     }
 }

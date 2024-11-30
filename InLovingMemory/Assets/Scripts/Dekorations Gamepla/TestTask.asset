@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc796f5e0439d044794e50a6662a6103, type: 3}
-  m_Name: New Task
+  m_Name: TestTask
   m_EditorClassIdentifier: 
   name: grandpa
   requiredDecoration:
-  - {fileID: 11400000, guid: c9fe3a8a908155046afdff5f4452ac62, type: 2}
-  - {fileID: 11400000, guid: e4e38d58d8de45249b2e75fae8d70d76, type: 2}
+  - {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
+  otherDecoration: []
