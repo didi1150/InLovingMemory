@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
         selectedDecoration = null;
     }
 
+    public static List<Decoration> getPlacedDecoration()
+    {
+        return placedDecorations;
+    }
+    
     public void Update()
     {
         

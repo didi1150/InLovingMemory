@@ -16,8 +16,4 @@ public class DecorationData : ScriptableObject
     
     public Sprite displayImage;
     public Sprite decorationImage;
-
-    
-    
-    
 }
