@@ -3,22 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public TaskData task;
+    
     private static Decoration selectedDecoration;
-    private static Vector3 mouseOffset;
-    private static List<Decoration> placedDecorations = new List<Decoration>();
+    private static List<DecorationData> placedDecorations = new List<DecorationData>();
 
+    private InventorySlot[] _inventorySlots;
+
+
+    public void Awake()
+    {
+        
+        //setup inventory
+        _inventorySlots = GameObject.FindObjectsOfType<InventorySlot>();
+        
+        if (_inventorySlots != null)
+        {
+            DecorationData[] requiredDecorations = task.requiredDecoration.ToArray();
+            DecorationData[] relevantDecorations = new DecorationData[_inventorySlots.Length];
+            
+            int i = 0;
+            while ( i < task.requiredDecoration.Count && i < _inventorySlots.Length)
+            {
+                relevantDecorations[i] = requiredDecorations[i];
+                i++;
+            }
+
+            int j = i;
+            i = 0;
+            DecorationData[] otherDecoration = task.otherDecoration.ToArray();
+            
+            while (i < task.requiredDecoration.Count && i+j < _inventorySlots.Length)
+            {
+                relevantDecorations[i+j] = requiredDecorations[i];
+                i++;
+            }
+
+            for (int k = 0; k < _inventorySlots.Length && k < relevantDecorations.Length; k++)
+            {
+                _inventorySlots[k].setData(relevantDecorations[k]);   
+            }
+        }
+        //setup inventory
+
+    }
+    
+    
+    
     public static void checkPlacement(DecorationData.PlacementType type)
     {
         if (selectedDecoration.compareType(type))
         {
+            placedDecorations.Add(selectedDecoration.getData());
             deselect();
         }
         else
         {
-            print("Destroy!!!");
             deselectAndDestroy();
         }
     }
@@ -32,21 +76,21 @@ public class GameManager : MonoBehaviour
     {
         DecorArea.Enable();
         
-        // Füge alle ausgewählten Objekte in Liste hinzu
-        placedDecorations.Add(selectedDecoration);
-        
         selectedDecoration = decoration;
         DecorationData data = decoration.getData();
-        mouseOffset = new Vector3(data.decorationImage.rect.x, data.decorationImage.rect.y, 0);
-        print(mouseOffset);
+        
+        // Füge alle ausgewählten Objekte in Liste hinzu
+        placedDecorations.Add(selectedDecoration.getData());
         
         decoration.select();
     }
 
     public static void deselect()
     {
-        DecorArea.Disable();
-        
+        if (placedDecorations.Contains(selectedDecoration.getData()))
+        {
+           placedDecorations.Remove(selectedDecoration.getData());
+        }
         selectedDecoration.deselect();
         selectedDecoration = null;
     }
@@ -57,8 +101,9 @@ public class GameManager : MonoBehaviour
         Destroy(selectedDecoration.gameObject);
         selectedDecoration = null;
     }
+    
 
-    public static List<Decoration> getPlacedDecoration()
+    public static List<DecorationData> getPlacedDecoration()
     {
         return placedDecorations;
     }
@@ -68,7 +113,7 @@ public class GameManager : MonoBehaviour
         
         if (selectedDecoration)
         {
-            selectedDecoration.transform.position = Input.mousePosition + mouseOffset;
+            selectedDecoration.transform.position = Input.mousePosition;
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -76,5 +121,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
 }
