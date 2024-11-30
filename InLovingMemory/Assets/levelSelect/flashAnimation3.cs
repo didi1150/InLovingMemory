@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class flashAnimation : MonoBehaviour
+public class flashAnimation3 : MonoBehaviour
 {
     private Color originalColor;
     public Color White = Color.white;
     public SpriteRenderer SpriteRenderer;
     public float duration = 0.1f;
     private bool isHovering = false;
-
     private Coroutine flashRoutine;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,16 +35,18 @@ public class flashAnimation : MonoBehaviour
         isHovering = false;
         SpriteRenderer.color = originalColor;
     }
-
     
     private IEnumerator flash()
     {
-        while (isHovering)
+        if (levelSelect.scene2done)
         {
-            SpriteRenderer.color = White; 
-            yield return new WaitForSeconds(duration);
-            SpriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(duration);
+            while (isHovering)
+            {
+                SpriteRenderer.color = White;
+                yield return new WaitForSeconds(duration);
+                SpriteRenderer.color = originalColor;
+                yield return new WaitForSeconds(duration);
+            }
         }
     }
 }
