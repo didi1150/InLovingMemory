@@ -17,7 +17,7 @@ public class Rating : MonoBehaviour
     }
     
     // Liste an platzierten Gegenständen aus GameManager
-    private static List<Decoration> _placedDecoration; 
+    private static List<DecorationData> _placedDecoration; 
     
     // Auszuführender task
     [SerializeField] private TaskData _taskData;
@@ -56,7 +56,7 @@ public class Rating : MonoBehaviour
 
             for (int j = 0; j < _placedDecoration.Count; j++)
             {
-                if (requiredDecoration.Equals(_placedDecoration[j].getData()))
+                if (requiredDecoration.Equals(_placedDecoration[j]))
                 {
                     achivedScorePoints += _pointsAddedForRightDecoration;
                 }
@@ -113,14 +113,9 @@ public class Rating : MonoBehaviour
         }
     }
     
-    public static void DisableGameManager()
-    {
-        
-    }
     
     public void PerformRating()
     {
-        DisableGameManager();
         
         TestCorrectNameOnGrave();
         TestRequestedObjectsPresent();
