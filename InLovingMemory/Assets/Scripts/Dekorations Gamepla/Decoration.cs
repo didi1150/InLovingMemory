@@ -26,6 +26,11 @@ public class Decoration : MonoBehaviour, IPointerClickHandler
         image.sprite = data.decorationImage;
     }
 
+    public DecorationData getData()
+    {
+        return data;
+    }
+
     public void select()
     {
         isSelected = true;
@@ -42,7 +47,10 @@ public class Decoration : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.select(this);
+        if (!GameManager.somethingSelected())
+        {
+            GameManager.select(this);
+        }
     }
 
     public bool compareType(DecorationData.PlacementType type)
