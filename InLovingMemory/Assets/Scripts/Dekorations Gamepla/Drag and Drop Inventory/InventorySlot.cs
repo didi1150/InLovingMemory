@@ -8,19 +8,20 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     private Image displayImage;
-    public DecorationData decoration;
+    private DecorationData decoration;
     private static String decorationPrefabPath = "Prefabs/DecorationPrefab";
     private static GameObject decorationPrefab;
 
     public void Awake()
     {
         displayImage = GetComponent<Image>();
-        displayImage.sprite = decoration.displayImage;
         decorationPrefab = Resources.Load(decorationPrefabPath) as GameObject;
-        if (decorationPrefab == null)
-        {
-            print("Could not find decoration prefab");
-        }
+    }
+
+    public void setData(DecorationData data)
+    {
+        decoration = data;
+        displayImage.sprite = decoration.displayImage;
     }
 
     public void OnPointerClick(PointerEventData eventData)
