@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Inventory Slots
   layers:
   - Default
   - TransparentFX
