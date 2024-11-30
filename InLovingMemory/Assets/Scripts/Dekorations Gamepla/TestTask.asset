@@ -15,4 +15,11 @@ MonoBehaviour:
   name: grandpa
   requiredDecoration:
   - {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
-  otherDecoration: []
+  - {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
+  - {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
+  - {fileID: 11400000, guid: e4e38d58d8de45249b2e75fae8d70d76, type: 2}
+  otherDecoration:
+  - {fileID: 11400000, guid: c9fe3a8a908155046afdff5f4452ac62, type: 2}
+  - {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
+  - {fileID: 11400000, guid: 80018db704697b34ca8538adde259b44, type: 2}
+  - {fileID: 11400000, guid: 80018db704697b34ca8538adde259b44, type: 2}
