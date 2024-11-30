@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     {
         if (selectedDecoration.compareType(type))
         {
-            placedDecorations.Add(selectedDecoration);
             deselect();
         }
         else
@@ -31,6 +30,11 @@ public class GameManager : MonoBehaviour
     
     public static void select(Decoration decoration)
     {
+        DecorArea.Enable();
+        
+        // Füge alle ausgewählten Objekte in Liste hinzu
+        placedDecorations.Add(selectedDecoration);
+        
         selectedDecoration = decoration;
         DecorationData data = decoration.getData();
         mouseOffset = new Vector3(data.decorationImage.rect.x, data.decorationImage.rect.y, 0);
@@ -41,12 +45,15 @@ public class GameManager : MonoBehaviour
 
     public static void deselect()
     {
+        DecorArea.Disable();
+        
         selectedDecoration.deselect();
         selectedDecoration = null;
     }
 
     public static void deselectAndDestroy()
     {
+        
         Destroy(selectedDecoration.gameObject);
         selectedDecoration = null;
     }

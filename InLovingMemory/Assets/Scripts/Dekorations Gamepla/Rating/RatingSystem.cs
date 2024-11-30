@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,7 +44,10 @@ public class Rating : MonoBehaviour
     
     private  void TestRequestedObjectsPresent()
     {
+        RemoveNullInPlacedDecoration();
+        
         int achivedScorePoints = 0;
+        _placedDecoration = _placedDecoration.OfType<Decoration>().ToList();
         
         // teste für alle wichtigen Objekten, ob sie plaziert wurden
         for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
@@ -73,13 +77,24 @@ public class Rating : MonoBehaviour
     {
         if (_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
         {
-            Debug.Log("contains name");
+           // Debug.Log("contains name");
             _score += _pointsAddedForRightName;
         }
         else
         {
-            Debug.Log("Does not contain name");
+           // Debug.Log("Does not contain name");
         }
+    }
+    
+    // überprüfe, ob Liste Null enthällt und bereinige sie
+    private static void RemoveNullInPlacedDecoration()
+    {
+        if (_placedDecoration == null)
+        {
+            return;
+        }
+        
+        _placedDecoration.RemoveAll(item => item == null);
     }
 
     private static PlayerPerformance EvaluatePlayerPerformance()
