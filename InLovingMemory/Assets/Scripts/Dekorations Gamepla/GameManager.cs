@@ -59,8 +59,6 @@ public class GameManager : MonoBehaviour
         if (selectedDecoration.compareType(type))
         {
             placedDecorations.Add(selectedDecoration.getData());
-            deselect();
-        }
         else
         {
             deselectAndDestroy();
@@ -74,6 +72,11 @@ public class GameManager : MonoBehaviour
     
     public static void select(Decoration decoration)
     {
+        DecorArea.Enable();
+        
+        // Füge alle ausgewählten Objekte in Liste hinzu
+        placedDecorations.Add(selectedDecoration);
+        
         selectedDecoration = decoration;
         DecorationData data = decoration.getData();
         
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public static void deselectAndDestroy()
     {
+        
         Destroy(selectedDecoration.gameObject);
         selectedDecoration = null;
     }
