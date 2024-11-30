@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: c14266b9c4a7ade46b7742aee3876508, type: 2}
   _slider: {fileID: 53256415}
-  _slider2: {fileID: 0}
+  _slider2: {fileID: 1991492987}
 --- !u!1 &1204351976
 GameObject:
   m_ObjectHideFlags: 0
