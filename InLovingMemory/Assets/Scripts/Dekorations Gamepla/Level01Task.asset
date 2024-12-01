@@ -14,11 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: grandpa
   requiredDecoration:
-  - decorationData: {fileID: 11400000, guid: 80018db704697b34ca8538adde259b44, type: 2}
+  - decorationData: {fileID: 11400000, guid: a05850f6d1e359746bf346540a7056da, type: 2}
     maxAmount: 1
-    pointsPerObject: 1
-  otherDecoration: []
+    pointsPerObject: 5
+  otherDecoration:
+  - decorationData: {fileID: 11400000, guid: ddd0016f650dad748aadd7534c2476a1, type: 2}
+    maxAmount: 50
+    pointsPerObject: 0
+  - decorationData: {fileID: 11400000, guid: ec22d5541843c3d49821778d50bce11d, type: 2}
+    maxAmount: 50
+    pointsPerObject: 0
+  - decorationData: {fileID: 11400000, guid: 50a4c413243deac409583ba1f90be33f, type: 2}
+    maxAmount: 50
+    pointsPerObject: 0
   negativeDecoration:
-  - decorationData: {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
-    maxAmount: 2
-    pointsPerObject: 2
+  - decorationData: {fileID: 11400000, guid: 723617207c3eeee48a44d6f03c61b030, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: d83894a0bf9b68a4e9b5c1fd3c7c2dd2, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
