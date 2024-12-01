@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    private Image displayImage;
+    public Image displayImage;
     private DecorationData decoration;
     private static String decorationPrefabPath = "Prefabs/DecorationPrefab";
     private static GameObject decorationPrefab;
@@ -41,6 +41,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public GameObject instantiateDecoration(Vector3 position)
     {
+        if (GameManager.somethingSelected()) return null;
         GameObject newDecoration = Instantiate(decorationPrefab, position, Quaternion.identity);
         newDecoration.transform.SetParent(transform);
         Decoration dec = newDecoration.GetComponent<Decoration>();
@@ -51,6 +52,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
         return newDecoration;
     }
-    
-    
+
+
 }

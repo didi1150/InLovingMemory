@@ -29,14 +29,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6646933832638157737}
-  - {fileID: 6807550332179112436}
   - {fileID: 1782126627256042716}
-  - {fileID: 2109279903975769872}
   - {fileID: 6800068879160503711}
-  - {fileID: 8748418658581376070}
   - {fileID: 57623454491515104}
-  - {fileID: 2153177771777502078}
   - {fileID: 1260549050779670387}
+  - {fileID: 2109279903975769872}
+  - {fileID: 2153177771777502078}
+  - {fileID: 6807550332179112436}
+  - {fileID: 8748418658581376070}
   - {fileID: 8676881410807976644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

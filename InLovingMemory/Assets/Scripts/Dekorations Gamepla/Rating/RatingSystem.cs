@@ -64,46 +64,86 @@ public class Rating : MonoBehaviour
             }
         }
         */
-        
+
         if (_placedDecoration == null || _placedDecoration.Count == 0)
         {
             Debug.Log("placedDecoration is null or empty");
             return;
         }
+        //foreach (var placedDecoration in _placedDecoration)
+        //{
+        //    //Debug.Log("Checking: " + placedDecoration.name);
+        //    if (_taskData.requiredDecoration == null || _taskData.requiredDecoration.Count == 0)
+        //    {
+        //        Debug.Log("placedDecoration is null or empty");
+        //        return;
+        //    }
 
-        foreach (var placedDecoration in _placedDecoration)
+        //    for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
+        //    {
+
+        //        //Debug.Log(i + ": " + _taskData.requiredDecoration[i].displayImage.name);
+        //        //Debug.Log("Placed: " + placedDecoration.displayImage.name);
+        //        if (placedDecoration.displayImage
+        //            .Equals(_taskData.requiredDecoration[i].displayImage))
+        //        {
+        //            _score += _pointsAddedForRightDecoration;
+        //            Debug.Log("score: " + _score);
+        //        }
+        //    }
+        //}
+        Debug.Log("Size: " + _placedDecoration.Count);
+        List<TaskEntry> reqDecCopy = _taskData.requiredDecoration;
+        List<DecorationData> placedDecCopy = _placedDecoration;
+        Dictionary<string, int> matchCount = new Dictionary<string, int>();
+        foreach (TaskEntry taskEntry in reqDecCopy)
         {
-            if (_taskData.requiredDecoration == null || _taskData.requiredDecoration.Count == 0)
+            string entryName = taskEntry.decorationData.displayImage.name;
+            if (matchCount.GetValueOrDefault(entryName, 0) > taskEntry.maxAmount) continue;
+            List<DecorationData> matches = placedDecCopy.FindAll(d => d.displayImage.name.Equals(entryName));
+            if (matches.Count <= taskEntry.maxAmount) _score += taskEntry.pointsPerObject * matches.Count;
+            else _score += taskEntry.pointsPerObject * taskEntry.maxAmount;
+            if (matchCount.ContainsKey(entryName))
             {
-                Debug.Log("placedDecoration is null or empty");
-                return;
+                matchCount[entryName] += matches.Count;
             }
-
-            for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
-            {
-                if (placedDecoration.Equals(_taskData.requiredDecoration[i]))
-                {
-                    _score += _pointsAddedForRightDecoration;
-                    Debug.Log("score: " + _score);
-                }
-            }
+            else matchCount.Add(entryName, +matches.Count);
         }
 
-       /* HashSet<DecorationData> checkedDecorations = new HashSet<DecorationData>();
-        
-        foreach (var placedDecoration in _placedDecoration)
+        List<TaskEntry> negativeDecCopy = _taskData.negativeDecoration;
+        foreach (TaskEntry taskEntry in negativeDecCopy)
         {
-            Debug.Log("size: " + _placedDecoration.Count);
-            Debug.Log("placed: "+ _placedDecoration.Contains(placedDecoration));
-            Debug.Log("checked" + !checkedDecorations.Contains(placedDecoration));
-            if (_taskData.requiredDecoration.Contains(placedDecoration) && !checkedDecorations.Contains(placedDecoration))
+            string entryName = taskEntry.decorationData.displayImage.name;
+            if (matchCount.GetValueOrDefault(entryName, 0) > taskEntry.maxAmount) continue;
+            List<DecorationData> matches = placedDecCopy.FindAll(d => d.displayImage.name.Equals(taskEntry.decorationData.displayImage.name));
+            if (matches.Count <= taskEntry.maxAmount) _score -= taskEntry.pointsPerObject * matches.Count;
+            else _score -= taskEntry.pointsPerObject * taskEntry.maxAmount;
+            if (matchCount.ContainsKey(entryName))
             {
-                _score += _pointsAddedForRightDecoration;
-                checkedDecorations.Add(placedDecoration);
-                Debug.Log(" new score: " +  _score);
+                matchCount[entryName] += matches.Count;
             }
+            else matchCount.Add(entryName, matches.Count);
         }
-        */
+
+        if (_score < 0) _score = 0;
+        Debug.Log("Score: " + _score);
+
+        /* HashSet<DecorationData> checkedDecorations = new HashSet<DecorationData>();
+
+         foreach (var placedDecoration in _placedDecoration)
+         {
+         
+        Debug.Log("size: " + _placedDecoration.Count);
+             Debug.Log("placed: "+ _placedDecoration.Contains(placedDecoration));
+             Debug.Log("checked" + !checkedDecorations.Contains(placedDecoration));
+             if (_taskData.requiredDecoration.Contains(placedDecoration) && !checkedDecorations.Contains(placedDecoration))
+             {
+                 _score += _pointsAddedForRightDecoration;
+                 checkedDecorations.Add(placedDecoration);
+                 Debug.Log(" new score: " +  _score);
+             }
+         }
+         */
     }
 
     public static void ReadInput(string s)
@@ -114,7 +154,7 @@ public class Rating : MonoBehaviour
     // ist der Name auf der Grabsteinplakette enthalten
     private void TestCorrectNameOnGrave()
     {
-        if (_writtenOnGrave != null &&_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
+        if (_writtenOnGrave != null && _writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
         {
             _score += _pointsAddedForRightName;
         }
@@ -128,16 +168,16 @@ public class Rating : MonoBehaviour
             return;
         }
 
-       for (int i = 0; i < _placedDecoration.Count; i++)
+        for (int i = 0; i < _placedDecoration.Count; i++)
         {
             if (_placedDecoration[i] == null)
             {
                 _placedDecoration.RemoveAt(i);
             }
         }
-        
+
     }
-    
+
     private static PlayerPerformance EvaluatePlayerPerformance()
     {
         if (_score < _mediumPerformanceScore)

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public TaskData task;
-    
+
     private static Decoration selectedDecoration;
     private static List<DecorationData> placedDecorations = new List<DecorationData>();
 
@@ -17,17 +17,18 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        
+
         //setup inventory
         _inventorySlots = GameObject.FindObjectsOfType<InventorySlot>();
-        
+
         if (_inventorySlots != null)
         {
-            DecorationData[] requiredDecorations = task.requiredDecoration.ToArray();
-            DecorationData[] relevantDecorations = new DecorationData[_inventorySlots.Length];
-            
+            TaskEntry[] requiredDecorations = task.requiredDecoration.ToArray();
+            TaskEntry[] negativeDecorations = task.negativeDecoration.ToArray();
+            TaskEntry[] relevantDecorations = new TaskEntry[_inventorySlots.Length];
+
             int i = 0;
-            while ( i < task.requiredDecoration.Count && i < _inventorySlots.Length)
+            while (i < task.requiredDecoration.Count && i < _inventorySlots.Length)
             {
                 relevantDecorations[i] = requiredDecorations[i];
                 i++;
@@ -35,25 +36,32 @@ public class GameManager : MonoBehaviour
 
             int j = i;
             i = 0;
-            DecorationData[] otherDecoration = task.otherDecoration.ToArray();
-            
-            while (i < task.requiredDecoration.Count && i+j < _inventorySlots.Length)
+            TaskEntry[] otherDecoration = task.otherDecoration.ToArray();
+
+            while (i < task.requiredDecoration.Count && i + j < _inventorySlots.Length)
             {
-                relevantDecorations[i+j] = requiredDecorations[i];
+                relevantDecorations[i + j] = requiredDecorations[i];
                 i++;
             }
-
-            for (int k = 0; k < _inventorySlots.Length && k < relevantDecorations.Length; k++)
+            int k = 0;
+            for (k = 0; k < _inventorySlots.Length && k < relevantDecorations.Length; k++)
             {
-                _inventorySlots[k].setData(relevantDecorations[k]);   
+                if (relevantDecorations[k] == null) continue;
+                _inventorySlots[k].setData(new DecorationData(relevantDecorations[k].decorationData.displayImage, relevantDecorations[k].decorationData.decorationImage, relevantDecorations[k].decorationData.type));
             }
+            for (int n = k; n < _inventorySlots.Length && n < negativeDecorations.Length; n++)
+            {
+                if (negativeDecorations[k] == null) continue;
+                _inventorySlots[n].setData(new DecorationData(negativeDecorations[k].decorationData.displayImage, negativeDecorations[k].decorationData.decorationImage, negativeDecorations[k].decorationData.type));
+            }
+
         }
         //setup inventory
 
     }
-    
-    
-    
+
+
+
     public static void checkPlacement(DecorationData.PlacementType type)
     {
         if (selectedDecoration.compareType(type))
@@ -71,25 +79,24 @@ public class GameManager : MonoBehaviour
     {
         return selectedDecoration != null;
     }
-    
+
     public static void select(Decoration decoration)
     {
         DecorArea.Enable();
-        
         selectedDecoration = decoration;
         DecorationData data = decoration.getData();
-        
+
         // Füge alle ausgewählten Objekte in Liste hinzu
-        placedDecorations.Add(selectedDecoration.getData());
-        
+        if (!placedDecorations.Find(p => p.uuid == decoration.getData().uuid))
+            placedDecorations.Add(selectedDecoration.getData());
         decoration.select();
     }
 
     public static void deselect()
     {
-        if (placedDecorations.Contains(selectedDecoration.getData()))
+        if (placedDecorations.Find(p => p.uuid == selectedDecoration.getData().uuid))
         {
-           placedDecorations.Remove(selectedDecoration.getData());
+            placedDecorations.Remove(selectedDecoration.getData());
         }
         selectedDecoration.deselect();
         selectedDecoration = null;
@@ -97,20 +104,24 @@ public class GameManager : MonoBehaviour
 
     public static void deselectAndDestroy()
     {
-        
+        if (placedDecorations.Find(p => p.uuid == selectedDecoration.getData().uuid))
+        {
+            placedDecorations.Remove(selectedDecoration.getData());
+        }
+        selectedDecoration.deselect();
         Destroy(selectedDecoration.gameObject);
         selectedDecoration = null;
     }
-    
+
 
     public static List<DecorationData> getPlacedDecoration()
     {
         return placedDecorations;
     }
-    
+
     public void Update()
     {
-        
+
         if (selectedDecoration)
         {
             selectedDecoration.transform.position = Input.mousePosition;

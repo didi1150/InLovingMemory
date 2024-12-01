@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Decoration", menuName = "Drag and Drop Inventory/Decoration")]
 public class DecorationData : ScriptableObject
 {
+    public string uuid;
     public PlacementType type;
     public enum PlacementType
     {
@@ -13,7 +12,17 @@ public class DecorationData : ScriptableObject
         Gravestone,
         Borderstone
     }
-    
+
     public Sprite displayImage;
     public Sprite decorationImage;
+
+    public DecorationData(Sprite displayImage, Sprite decorationImage, PlacementType placementType)
+    {
+        this.displayImage = displayImage;
+        this.decorationImage = decorationImage;
+        this.type = placementType;
+
+        uuid = Guid.NewGuid().ToString();
+        Debug.Log($"Generated UUID: {uuid} for {name}");
+    }
 }
