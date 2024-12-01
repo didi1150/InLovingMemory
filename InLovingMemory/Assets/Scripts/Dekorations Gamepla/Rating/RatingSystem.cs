@@ -45,58 +45,64 @@ public class Rating : MonoBehaviour
 
     private void TestRequestedObjectsPresent()
     {
-        if (_placedDecoration == null)
+        /*if (_placedDecoration == null)
         {
             Debug.Log("placedDecoration is null");
+            return;
         }
         for (int i = 0; i < _taskData.requiredDecoration.Count(); i++)
         {
             DecorationData requiredDeco = _taskData.requiredDecoration[i];
-            if (_placedDecoration != null && _placedDecoration.Contains(requiredDeco))
-            {
-                _score += _pointsAddedForRightDecoration;
-                Debug.Log(_score + "new");
-            }
-        }
-        
-        
-        /*Debug.Log(_placedDecoration.Count + "before");
-        RemoveNullInPlacedDecoration();
-        Debug.Log(_placedDecoration.Count + "after");
-        
-
-        if (_placedDecoration == null)
-        {
-            Debug.Log("placedDecoration is null");
-        }
-        
-        Debug.Log("list size: " + _placedDecoration.Count);
-        int achivedScorePoints = 0;
-
-        //_placedDecoration = _placedDecoration.OfType<Decoration>().ToList();
-        
-=======
-        RemoveNullInPlacedDecoration();
-
-        int achivedScorePoints = 0;
-        _placedDecoration = _placedDecoration.OfType<DecorationData>().ToList();
-
->>>>>>> 426c5b475940a952a222fc33e61ce13c19922f80
-        // teste für alle wichtigen Objekten, ob sie plaziert wurden
-        for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
-        {
-            DecorationData requiredDecoration = _taskData.requiredDecoration[i];
-
             for (int j = 0; j < _placedDecoration.Count; j++)
             {
-                if (requiredDecoration.Equals(_placedDecoration[j]))
+                if (_placedDecoration[j].Equals(requiredDeco))
                 {
-                    achivedScorePoints += _pointsAddedForRightDecoration;
+                    _score += _pointsAddedForRightDecoration;
+                    Debug.Log("new score: " + _score);
+                    break;
                 }
             }
         }
-        _score += achivedScorePoints;
-        Debug.Log("score after TestRequestedObjectsPresent: " + _score);
+        */
+        
+        if (_placedDecoration == null || _placedDecoration.Count == 0)
+        {
+            Debug.Log("placedDecoration is null or empty");
+            return;
+        }
+
+        foreach (var placedDecoration in _placedDecoration)
+        {
+            if (_taskData.requiredDecoration == null || _taskData.requiredDecoration.Count == 0)
+            {
+                Debug.Log("placedDecoration is null or empty");
+                return;
+            }
+
+            for (int i = 0; i < _taskData.requiredDecoration.Count; i++)
+            {
+                if (placedDecoration.Equals(_taskData.requiredDecoration[i]))
+                {
+                    _score += _pointsAddedForRightDecoration;
+                    Debug.Log("score: " + _score);
+                }
+            }
+        }
+
+       /* HashSet<DecorationData> checkedDecorations = new HashSet<DecorationData>();
+        
+        foreach (var placedDecoration in _placedDecoration)
+        {
+            Debug.Log("size: " + _placedDecoration.Count);
+            Debug.Log("placed: "+ _placedDecoration.Contains(placedDecoration));
+            Debug.Log("checked" + !checkedDecorations.Contains(placedDecoration));
+            if (_taskData.requiredDecoration.Contains(placedDecoration) && !checkedDecorations.Contains(placedDecoration))
+            {
+                _score += _pointsAddedForRightDecoration;
+                checkedDecorations.Add(placedDecoration);
+                Debug.Log(" new score: " +  _score);
+            }
+        }
         */
     }
 
@@ -110,9 +116,7 @@ public class Rating : MonoBehaviour
     {
         if (_writtenOnGrave != null &&_writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
         {
-            Debug.Log("contains name");
             _score += _pointsAddedForRightName;
-            Debug.Log(_score);
         }
     }
 
