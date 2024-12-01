@@ -5,10 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Rating : MonoBehaviour
 {
+
+    public static Rating instance;
     private enum PlayerPerformance
     {
         Bad,
@@ -17,30 +20,28 @@ public class Rating : MonoBehaviour
     }
 
     // Liste an platzierten Gegenständen aus GameManager
-    private static List<DecorationData> _placedDecoration;
+    private List<DecorationData> _placedDecoration;
 
     // Auszuführender task
     [SerializeField] private TaskData _taskData;
 
-    // score Punkte
-    public int _pointsAddedForRightDecoration;
-    public int _pointsAddedForRightName;
-
     // score Grenzen
-    private static int _mediumPerformanceScore;
-    private static int _goodPerformanceScore;
+    private int _mediumPerformanceScore;
+    private int _goodPerformanceScore;
 
-    private static int _score = 0;
-    private static bool _ratingPerformed = false;
+    private int _score = 0;
+    private bool _ratingPerformed = false;
 
     // eingegebener Text
-    private static string _writtenOnGrave;
-
+    private string _writtenOnGrave;
 
     //---------------------------------//
     private void Awake()
     {
+        if (instance == null) instance = this;
         _placedDecoration = GameManager.getPlacedDecoration();
+        _mediumPerformanceScore = 33;
+        _goodPerformanceScore = 66;
     }
 
     private void TestRequestedObjectsPresent()
@@ -109,13 +110,14 @@ public class Rating : MonoBehaviour
             }
             else matchCount.Add(entryName, +matches.Count);
         }
-
+        Debug.Log("Score Added: " + _score);
         List<TaskEntry> negativeDecCopy = _taskData.negativeDecoration;
         foreach (TaskEntry taskEntry in negativeDecCopy)
         {
             string entryName = taskEntry.decorationData.displayImage.name;
             if (matchCount.GetValueOrDefault(entryName, 0) > taskEntry.maxAmount) continue;
             List<DecorationData> matches = placedDecCopy.FindAll(d => d.displayImage.name.Equals(taskEntry.decorationData.displayImage.name));
+            if (matches.Count == 0) continue;
             if (matches.Count <= taskEntry.maxAmount) _score -= taskEntry.pointsPerObject * matches.Count;
             else _score -= taskEntry.pointsPerObject * taskEntry.maxAmount;
             if (matchCount.ContainsKey(entryName))
@@ -125,8 +127,12 @@ public class Rating : MonoBehaviour
             else matchCount.Add(entryName, matches.Count);
         }
 
+        Debug.Log("Score Reduced: " + _score);
+
+        _score *= 100;
         if (_score < 0) _score = 0;
         Debug.Log("Score: " + _score);
+
 
         /* HashSet<DecorationData> checkedDecorations = new HashSet<DecorationData>();
 
@@ -146,22 +152,22 @@ public class Rating : MonoBehaviour
          */
     }
 
-    public static void ReadInput(string s)
+    public void ReadInput(string s)
     {
         _writtenOnGrave = s;
     }
 
     // ist der Name auf der Grabsteinplakette enthalten
-    private void TestCorrectNameOnGrave()
-    {
-        if (_writtenOnGrave != null && _writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
-        {
-            _score += _pointsAddedForRightName;
-        }
-    }
+    //private void TestCorrectNameOnGrave()
+    //{
+    //    if (_writtenOnGrave != null && _writtenOnGrave.ToLower().Contains(_taskData.name.ToLower()))
+    //    {
+    //        _score += _pointsAddedForRightName;
+    //    }
+    //}
 
     // überprüfe, ob Liste Null enthällt und bereinige sie
-    private static void RemoveNullInPlacedDecoration()
+    private void RemoveNullInPlacedDecoration()
     {
         if (_placedDecoration == null)
         {
@@ -178,8 +184,16 @@ public class Rating : MonoBehaviour
 
     }
 
-    private static PlayerPerformance EvaluatePlayerPerformance()
+    private PlayerPerformance EvaluatePlayerPerformance()
     {
+        int maxScore = 0;
+        foreach (TaskEntry taskEntry in _taskData.requiredDecoration)
+        {
+            maxScore += taskEntry.pointsPerObject * taskEntry.maxAmount;
+        }
+        float percentage = (float)_score / maxScore;
+        Debug.Log(_score + "/" + maxScore + " = " + percentage);
+
         if (_score < _mediumPerformanceScore)
         {
             return PlayerPerformance.Bad;
@@ -198,10 +212,13 @@ public class Rating : MonoBehaviour
     public void PerformRating()
     {
 
-        TestCorrectNameOnGrave();
+        //TestCorrectNameOnGrave();
         TestRequestedObjectsPresent();
 
-        EvaluatePlayerPerformance();
+        PlayerPerformance p = EvaluatePlayerPerformance();
+        int rating = (int)p;
+        Debug.Log("Enum: " + p.ToString());
+        Debug.Log("Rating: " + rating);
         _ratingPerformed = true;
     }
 }
