@@ -22,8 +22,8 @@ MonoBehaviour:
     - ... and make everyone laugh with his silly jokes ...
     - ... which maybe weren't that good most of the times but we all laughed anyway.
     MemoryAudios:
-    - AudioClip: {fileID: 8300000, guid: 38d0c4b5db2db5c478cef427425d6b44, type: 3}
-      Delay: 20
+    - AudioClip: {fileID: 8300000, guid: 2606078a03bbd7e4197acf07df95ef3a, type: 3}
+      Delay: 15
       Volume: 0.2
     Sprite: {fileID: 21300000, guid: aa2bfe43e9cc374439106ca127499c8a, type: 3}
   - Sentences:
@@ -34,8 +34,8 @@ MonoBehaviour:
     - 'He got all quiet afterwards and looked out into the distance, ... '
     - ... as if he was seeing that one very good friend.
     MemoryAudios:
-    - AudioClip: {fileID: 8300000, guid: 24159138b224da84e8d3284e6670ce3e, type: 3}
-      Delay: 4
+    - AudioClip: {fileID: 8300000, guid: 90c01e129333f3c4abe5109b45d3d9cc, type: 3}
+      Delay: 0
       Volume: 1
     Sprite: {fileID: 21300000, guid: f548ba3d2cccd724ab04306f0b81e1e5, type: 3}
   - Sentences:
@@ -55,7 +55,7 @@ MonoBehaviour:
     - Please Graveyard Keeper, the least I can do is to honor his grave.
     - My Regards.
     MemoryAudios:
-    - AudioClip: {fileID: 8300000, guid: 24159138b224da84e8d3284e6670ce3e, type: 3}
-      Delay: 4
+    - AudioClip: {fileID: 8300000, guid: 90c01e129333f3c4abe5109b45d3d9cc, type: 3}
+      Delay: 5
       Volume: 1
     Sprite: {fileID: 21300000, guid: d54e51e1cdb901546a7416dddbff2345, type: 3}

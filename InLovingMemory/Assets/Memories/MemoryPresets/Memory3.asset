@@ -18,8 +18,8 @@ MonoBehaviour:
     - Graveyard Keeper,
     - Morgana, the black Eye, was the greatest pirate of her time.
     - Or so she told anyone who would come across her on the streets.
-    - She stole from people of any kind getting  into a lot of trouble all the time...
-    - ...for she wanted to be know as the big bad thief in the neighbourhood.
+    - She stole from people of any kind getting into a lot of trouble all the time...
+    - ...for she wanted to be known as the big bad thief in the neighbourhood.
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: bd24c597910d8e249924adf73c072785, type: 3}
       Delay: 3
@@ -31,20 +31,20 @@ MonoBehaviour:
     - There were a lot of things the townsfolk had issues with.
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: 7b81bd0c35df3c94592eaa25532a7804, type: 3}
-      Delay: 4
+      Delay: 9
       Volume: 0.5
     - AudioClip: {fileID: 8300000, guid: 3b51f2827c4c3fd48bd25862213a9c8c, type: 3}
-      Delay: 1
-      Volume: 0.5
+      Delay: 2
+      Volume: 0.1
     Sprite: {fileID: 21300000, guid: 4d370e8b89ab5804ca7e3e76082fec00, type: 3}
   - Sentences:
     - When she passed, it was as though time itself had paused,...
     - ...yet no one marked the moment, no one recognized the silence.
-    - It was only after a few months the people started noticing the village had
-      gotten quiet.
+    - It was only after a few months...
+    - ...the people started noticing the village had gotten quiet.
     - Morgana had died alone and no one had known.
-    - But the most devastating part was more that nobody had seen her for what she
-      actually had been.
+    - But the most devastating part...
+    - ...was that nobody had seen her for what she actually had been.
     MemoryAudios: []
     Sprite: {fileID: 21300000, guid: d703e0d9ff0eb2a408f7b56ea8827509, type: 3}
   - Sentences:
@@ -55,13 +55,13 @@ MonoBehaviour:
 
 '
     - This request comes from an unknown fan who would be most grateful...
-    - 'if you could arrange a resting place for Morgana, the black Eye, the greatest
-      pirate of her time.
+    - ...if you could arrange a resting place...
+    - '...for Morgana, the black Eye, the greatest pirate of her time.
 
 '
     - Best Wishes
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: 7078cba8b7da44c4c8e152b624ccfa60, type: 3}
       Delay: 1
-      Volume: 0.5
+      Volume: 0.1
     Sprite: {fileID: 21300000, guid: 4899757edfaa36c429420d3e948035a5, type: 3}
