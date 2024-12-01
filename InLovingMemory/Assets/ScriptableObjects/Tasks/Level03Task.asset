@@ -13,5 +13,36 @@ MonoBehaviour:
   m_Name: Level03Task
   m_EditorClassIdentifier: 
   name: 
-  requiredDecoration: []
-  otherDecoration: []
+  requiredDecoration:
+  - decorationData: {fileID: 11400000, guid: ebf6d8634aea94942a564d9f277fe74f, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: 78be7959369a75e44bff925578d49e14, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: d684e9db59356274da39d3252791d826, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  otherDecoration:
+  - decorationData: {fileID: 11400000, guid: 79ca5dd2c707dc44493e7c23430328c4, type: 2}
+    maxAmount: 50
+    pointsPerObject: 0
+  - decorationData: {fileID: 11400000, guid: 97c807e5b951a4e4bbf573b183bb5e60, type: 2}
+    maxAmount: 50
+    pointsPerObject: 0
+  negativeDecoration:
+  - decorationData: {fileID: 11400000, guid: 511b259b22aa46e42a4e575c6026c129, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: d83894a0bf9b68a4e9b5c1fd3c7c2dd2, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: 723617207c3eeee48a44d6f03c61b030, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: 4e028f99e42e52a489ed9f5394315c5f, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: a05850f6d1e359746bf346540a7056da, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5

@@ -15,5 +15,5 @@ MonoBehaviour:
   isGeneric: 1
   uuid: 
   type: 1
-  displayImage: {fileID: 21300000, guid: 57d6cf5da5a02d040bc9456971d29bc5, type: 3}
+  displayImage: {fileID: 21300000, guid: dc102b3da3ffc654f840f9e2298e40e7, type: 3}
   decorationImage: {fileID: 21300000, guid: dc102b3da3ffc654f840f9e2298e40e7, type: 3}
