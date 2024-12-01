@@ -15,8 +15,8 @@ MonoBehaviour:
   name: grandpa
   requiredDecoration:
   - decorationData: {fileID: 11400000, guid: 80018db704697b34ca8538adde259b44, type: 2}
-    maxAmount: 0
-    pointsPerObject: 0
+    maxAmount: 1
+    pointsPerObject: 1
   otherDecoration: []
   negativeDecoration:
   - decorationData: {fileID: 11400000, guid: 537ee533b5da7104d859f6f08e042a1c, type: 2}
