@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MemoryTrigger : MonoBehaviour
 {
     // public MemoryManager memoryManager;
-    public Memory memory;
+    public Memory memory1;
+    public Memory memory2;
+    public Memory memory3;
     
     private void Awake()
     {
@@ -29,13 +31,13 @@ public class MemoryTrigger : MonoBehaviour
         // }
     }*/
     
-    public void TriggerMemory()
+    public void TriggerMemory(int level)
     {
         Debug.Log("Memory triggered");
-        StartCoroutine(LoadMemoryScene());
+        StartCoroutine(LoadMemoryScene(level));
     }
 
-    private IEnumerator LoadMemoryScene()
+    private IEnumerator LoadMemoryScene(int level)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MemoryScene");
         while (!asyncLoad.isDone)
@@ -47,7 +49,14 @@ public class MemoryTrigger : MonoBehaviour
         MemoryManager memoryManager = FindObjectOfType<MemoryManager>();
         if (memoryManager != null)
         {
-            memoryManager.StartScene(memory.MemoryScenes);
+            Memory memoryLevel;
+            switch (level)
+            {
+                case 2: memoryLevel = memory2;break; 
+                case 3: memoryLevel = memory3;break;
+                default: memoryLevel = memory1;break;
+            }
+            memoryManager.StartScene(memoryLevel.MemoryScenes);
         }
         else
         {
