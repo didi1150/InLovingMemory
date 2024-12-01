@@ -56,7 +56,7 @@ public class MemoryTrigger : MonoBehaviour
                 case 3: memoryLevel = memory3;break;
                 default: memoryLevel = memory1;break;
             }
-            memoryManager.StartScene(memoryLevel.MemoryScenes);
+            memoryManager.StartScene(memoryLevel.MemoryScenes, level);
         }
         else
         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MemoryManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class MemoryManager : MonoBehaviour
     private Queue<MemoryScene> memoryScenes;
 
     private MemoryScene currentScene;
+    private int level;
 
     // private void Awake()
     // {
@@ -31,8 +33,9 @@ public class MemoryManager : MonoBehaviour
         memoryScenes = new Queue<MemoryScene>();
     }
 
-    public void StartScene(MemoryScene[] memoryMemoryScenes)
+    public void StartScene(MemoryScene[] memoryMemoryScenes, int level)
     {
+        this.level = level;
         Debug.Log("Memory started");
         memoryScenes.Clear();
         foreach (MemoryScene memoryScene in memoryMemoryScenes)
@@ -94,6 +97,6 @@ public class MemoryManager : MonoBehaviour
 
     private void EndMemory()
     {
-        //TODO end of memory
+        SceneManager.LoadScene("Level0" + level);
     }
 }
