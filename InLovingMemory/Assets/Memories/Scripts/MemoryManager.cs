@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,39 +10,65 @@ public class MemoryManager : MonoBehaviour
     public DialogueManager DialogueManager;
     public Image SceneImage;
     
+    public AudioClip letterSwooshSound1;
+    public AudioClip letterSwooshSound2;
+    public AudioClip letterSwooshSound3;
+    public AudioClip letterSwooshSound4;
+    public float letterSwooshVolume = 1F;
+    
     private Queue<MemoryScene> memoryScenes;
 
     private MemoryScene currentScene;
-    
+
+    // private void Awake()
+    // {
+    //     DontDestroyOnLoad(this);
+    // }
+
     // Start is called before the first frame update
     void Start()
     {
         memoryScenes = new Queue<MemoryScene>();
-        DialogueManager.setMemoryManager(this);
     }
 
     public void StartScene(MemoryScene[] memoryMemoryScenes)
     {
+        Debug.Log("Memory started");
         memoryScenes.Clear();
         foreach (MemoryScene memoryScene in memoryMemoryScenes)
         {
             memoryScenes.Enqueue(memoryScene);
         }
+        StartCoroutine(PlayLetterOpeningSound());
+    }
+
+    private IEnumerator PlayLetterOpeningSound()
+    {
+        switch (UnityEngine.Random.Range(1, 5))
+        {
+            case 1: AudioSource.PlayClipAtPoint(letterSwooshSound1, Camera.main.transform.position, letterSwooshVolume);break;
+            case 2: AudioSource.PlayClipAtPoint(letterSwooshSound2,Camera.main.transform.position,letterSwooshVolume);break;
+            case 3: AudioSource.PlayClipAtPoint(letterSwooshSound3,Camera.main.transform.position,letterSwooshVolume);break;
+            case 4: AudioSource.PlayClipAtPoint(letterSwooshSound4,Camera.main.transform.position,letterSwooshVolume);break;
+        }
+        yield return new WaitForSeconds(1.2f);
         DisplayNextScene();
     }
-    
+
     public void DisplayNextScene()
     {
         StopAllCoroutines();
         if (memoryScenes.Count == 0)
         {
             EndMemory();
-            return;
         }
-        currentScene = memoryScenes.Dequeue();
-        ChangeSceneImage();
-        QueueAudio();
-        DialogueManager.StartDialogue(currentScene.Sentences);
+        else
+        {
+            currentScene = memoryScenes.Dequeue();
+            ChangeSceneImage();
+            QueueAudio();
+            DialogueManager.StartDialogue(currentScene.Sentences);
+        }
     }
 
     private void ChangeSceneImage()
@@ -62,7 +89,7 @@ public class MemoryManager : MonoBehaviour
     {
         yield return new WaitForSeconds(memoryAudio.Delay);
         //Camera.main.transform.position
-        AudioSource.PlayClipAtPoint(memoryAudio.AudioClip,transform.position,memoryAudio.Volume);
+        AudioSource.PlayClipAtPoint(memoryAudio.AudioClip,Camera.main.transform.position,memoryAudio.Volume);
     }
 
     private void EndMemory()
