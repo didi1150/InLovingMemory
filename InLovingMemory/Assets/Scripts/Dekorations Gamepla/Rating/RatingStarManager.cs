@@ -23,7 +23,7 @@ public class RatingStarManager : MonoBehaviour
 
     public void setRating(int rating)
     {
-        rating = Math.Clamp(rating, 0, stars.Length);
+        rating = Math.Clamp(rating, 0, stars.Length - 1);
 
         for (int i = rating; i >= 0; i--)
         {

@@ -223,7 +223,7 @@ public class Rating : MonoBehaviour
         GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
         if (gameManager)
         {
-            gameManager.ShowRating(0);
+            gameManager.ShowRating(rating);
         }
     }
 }
