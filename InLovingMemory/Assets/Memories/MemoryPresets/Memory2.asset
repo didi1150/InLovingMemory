@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a479399efe7d6b499238a55d754d180, type: 3}
+  m_Name: Memory2
+  m_EditorClassIdentifier: 
+  MemoryScenes:
+  - Sentences:
+    - 'Old friend,
+
+
+'
+    - 'I hope you fare well. '
+    - "Unfortunately, I\u2019m not doing too well myself lately... To be blunt, Teddy
+      died.\n"
+    - 'You know how dear she was to me. '
+    - 'I have known her since she was the little puppy I adopted from the streets. '
+    - 'Teddy and I have lived a quiet but happy life, up there in the mountains. '
+    - There isn't really much for me to complain about in life, ...
+    - ... but I just wish we had some more time together.
+    MemoryAudios: []
+    Sprite: {fileID: 21300000, guid: f8718254ba53eeb41a89301d2906d97c, type: 3}
+  - Sentences:
+    - You may recall the few times, ...
+    - I took her to our meetings and the way she would jump happily around you.
+    - 'I remember it very clearly... '
+    - Especially the squeaky toy she always carried around.
+    - 'That thing was always making noise. '
+    - Even though I myself didn't enjoy it as much as she did, ...
+    - ... it's one of the last remains I can hold onto ...
+    - 
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: e59c393e4c97e5247ab704922ed03291, type: 3}
+      Delay: 9
+      Volume: 1
+    Sprite: {fileID: 21300000, guid: 6cd7e1319fc5a5f4bab2b614f99d111b, type: 3}
+  - Sentences:
+    - 'As I grew older, so did Teddy. '
+    - "She hadn\u2019t been that energetic lately ..."
+    - "... and we would sit in the fields more often than we\u2019d ran. "
+    - 'I knew that her time on this world would end soon, but I didn''t act upon
+      it. '
+    - But now that she's gone, it has been one of my deepest regrets.
+    MemoryAudios: []
+    Sprite: {fileID: 21300000, guid: 1c33c8894bbcbbc45904d5d123af1821, type: 3}
+  - Sentences:
+    - "My bones are not what they used to be, I\u2019m growing old, friend. "
+    - I cannot cultivate a proper grave for my precious girl, ...
+    - '... so I''m asking you to do it on my behalf...
+
+'
+    - Would you do that for me, old pal?
+    - Thank you
+    MemoryAudios: []
+    Sprite: {fileID: 21300000, guid: 6802457930a58d34ca5b06002af4edbc, type: 3}
