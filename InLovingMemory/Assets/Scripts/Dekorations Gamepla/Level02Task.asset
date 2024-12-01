@@ -13,5 +13,27 @@ MonoBehaviour:
   m_Name: Level02Task
   m_EditorClassIdentifier: 
   name: 
-  requiredDecoration: []
-  otherDecoration: []
+  requiredDecoration:
+  - decorationData: {fileID: 11400000, guid: a20e7e9e6cfdbe54d85f0ed9034ad023, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: 450e124aa0703fe4280d8d79b4c852dc, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  otherDecoration:
+  - decorationData: {fileID: 11400000, guid: ddd0016f650dad748aadd7534c2476a1, type: 2}
+    maxAmount: 10
+    pointsPerObject: 0
+  - decorationData: {fileID: 11400000, guid: 51ec2806540841841b95f1014d1d48d8, type: 2}
+    maxAmount: 10
+    pointsPerObject: 0
+  negativeDecoration:
+  - decorationData: {fileID: 11400000, guid: 511b259b22aa46e42a4e575c6026c129, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: 723617207c3eeee48a44d6f03c61b030, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5
+  - decorationData: {fileID: 11400000, guid: a05850f6d1e359746bf346540a7056da, type: 2}
+    maxAmount: 1
+    pointsPerObject: 5

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487ab4cc9cead194ba984c28026a53da, type: 3}
   m_Name: PL_flower
   m_EditorClassIdentifier: 
-  isGeneric: 1
+  isGeneric: 0
   uuid: 
   type: 0
   displayImage: {fileID: 21300000, guid: 34c56c9e4a415234db4c71604dae93df, type: 3}
