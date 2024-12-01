@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
@@ -38,47 +39,86 @@ public class GameManager : MonoBehaviour
         
 
         //setup inventory
-        _inventorySlots = GameObject.FindObjectsOfType<InventorySlot>();
-
+        _inventorySlots = GameObject.FindObjectsOfType<InventorySlot>().OrderBy(go => go.name).ToArray();
+        
+        System.Array.Sort(_inventorySlots, (a, b) => string.Compare(a.gameObject.name, b.gameObject.name, true));
+        foreach (var inventorySlot in _inventorySlots)
+        {
+            Debug.Log("         slots : " +  inventorySlot.name);
+        }
         if (_inventorySlots != null)
         {
             TaskEntry[] requiredDecorations = task.requiredDecoration.ToArray();
             TaskEntry[] negativeDecorations = task.negativeDecoration.ToArray();
+            TaskEntry[] otherDecoration = task.otherDecoration.ToArray();
             TaskEntry[] relevantDecorations = new TaskEntry[_inventorySlots.Length];
 
+            // int i = 0;
+            // while (i < task.requiredDecoration.Count && i < _inventorySlots.Length)
+            // {
+            //     relevantDecorations[i] = requiredDecorations[i];
+            //     i++;
+            // }
+            Debug.Log("length: " + relevantDecorations.Length);
+            relevantDecorations = AddToArray(relevantDecorations,requiredDecorations,0);
+            Debug.Log("required finished " + requiredDecorations.Length);
+            relevantDecorations = AddToArray(relevantDecorations,negativeDecorations,requiredDecorations.Length);
+            Debug.Log("negativ finished " + negativeDecorations.Length);
+            relevantDecorations = AddToArray(relevantDecorations,otherDecoration,requiredDecorations.Length+negativeDecorations.Length);
+            Debug.Log("other finished " + otherDecoration.Length);
+
+            // int j = i;
+            // i = 0;
+            //
+            // while (i < task.requiredDecoration.Count && i + j < _inventorySlots.Length)
+            // {
+            //     relevantDecorations[i + j] = requiredDecorations[i];
+            //     i++;
+            // }
             int i = 0;
-            while (i < task.requiredDecoration.Count && i < _inventorySlots.Length)
+            for (i = 0; i < relevantDecorations.Length; i++)
             {
-                relevantDecorations[i] = requiredDecorations[i];
-                i++;
+                if (relevantDecorations[i] == null) break;
+                _inventorySlots[i].setData(new DecorationData(relevantDecorations[i].decorationData.displayImage, relevantDecorations[i].decorationData.decorationImage, relevantDecorations[i].decorationData.type, relevantDecorations[i].decorationData.isGeneric));
+                Debug.Log(relevantDecorations[i]);
+                // _inventorySlots[i].GetComponent<Im>().enabled = true;
+                _inventorySlots[i].gameObject.SetActive(true);
             }
-
-            int j = i;
-            i = 0;
-            TaskEntry[] otherDecoration = task.otherDecoration.ToArray();
-
-            while (i < task.requiredDecoration.Count && i + j < _inventorySlots.Length)
+            for (var j = i; j < relevantDecorations.Length; j++)
             {
-                relevantDecorations[i + j] = requiredDecorations[i];
-                i++;
+                // _inventorySlots[i].GetComponent<Renderer>().enabled = false;
+                _inventorySlots[j].gameObject.SetActive(false);
+                Debug.Log("disabled: " + _inventorySlots[j].name);
             }
-            int k = 0;
-            for (k = 0; k < _inventorySlots.Length && k < relevantDecorations.Length; k++)
-            {
-                if (relevantDecorations[k] == null) continue;
-                _inventorySlots[k].setData(new DecorationData(relevantDecorations[k].decorationData.displayImage, relevantDecorations[k].decorationData.decorationImage, relevantDecorations[k].decorationData.type, relevantDecorations[k].decorationData.isGeneric));
-            }
-            for (int n = k; n < _inventorySlots.Length && n < negativeDecorations.Length; n++)
-            {
-                if (negativeDecorations[k] == null) continue;
-                _inventorySlots[n].setData(new DecorationData(negativeDecorations[k].decorationData.displayImage, negativeDecorations[k].decorationData.decorationImage, negativeDecorations[k].decorationData.type, negativeDecorations[k].decorationData.isGeneric));
-            }
+            // int k = 0;
+            // for (k = 0; k < _inventorySlots.Length && k < relevantDecorations.Length; k++)
+            // {
+            //     if (relevantDecorations[k] == null) continue;
+            //     _inventorySlots[k].setData(new DecorationData(relevantDecorations[k].decorationData.displayImage, relevantDecorations[k].decorationData.decorationImage, relevantDecorations[k].decorationData.type, relevantDecorations[k].decorationData.isGeneric));
+            // }
+            // for (int n = k; n < _inventorySlots.Length && n < negativeDecorations.Length; n++)
+            // {
+            //     if (negativeDecorations[k] == null) continue;
+            //     _inventorySlots[n].setData(new DecorationData(negativeDecorations[k].decorationData.displayImage, negativeDecorations[k].decorationData.decorationImage, negativeDecorations[k].decorationData.type, negativeDecorations[k].decorationData.isGeneric));
+            // }
 
         }
         //setup inventory
 
     }
-    
+
+    private TaskEntry[] AddToArray(TaskEntry[] relevantDecorations, TaskEntry[] deco, int index)
+    {
+        
+        int i = 0;
+        while (i < deco.Length && i < _inventorySlots.Length)
+        {
+            Debug.Log(i);
+            relevantDecorations[index+i] = deco[i];
+            i++;
+        }
+        return relevantDecorations;
+    }
 
 
     public static void checkPlacement(DecorationData.PlacementType type)

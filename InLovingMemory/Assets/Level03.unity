@@ -2335,7 +2335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8836871015352566626, guid: 145615c730c038f42a347181e19c1241, type: 3}
       propertyPath: m_Name
-      value: Item Slot (10)
+      value: Item Slot (99)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2598,7 +2598,8 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2892608669925620003, guid: e1d266f6983ef204c9ced04c7cfd4e0f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1631817449606696185, guid: e1d266f6983ef204c9ced04c7cfd4e0f, type: 3}
       insertIndex: -1
