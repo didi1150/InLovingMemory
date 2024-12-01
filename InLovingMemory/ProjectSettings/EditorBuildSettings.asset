@@ -18,6 +18,15 @@ EditorBuildSettings:
     path: Assets/Memories/Scene/MemoryScene.unity
     guid: 441cc9a1c0c437848b332bf0f6517f67
   - enabled: 1
+    path: Assets/Level01.unity
+    guid: 5811a609f62126244bd3ed3822dbb97b
+  - enabled: 1
+    path: Assets/Level02.unity
+    guid: c0a4c05cda327d04e847ea2cae4b78df
+  - enabled: 1
+    path: Assets/Level03.unity
+    guid: 46dc03b9873930c46ba07093e5c3d209
+  - enabled: 1
     path: Assets/endScene.unity
     guid: 90efc7098fad4bc4ebc6b06abb9197d8
   m_configObjects: {}
