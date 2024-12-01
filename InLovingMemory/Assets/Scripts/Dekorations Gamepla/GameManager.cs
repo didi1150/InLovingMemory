@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         //setup inventory
 
     }
-
+    
 
 
     public static void checkPlacement(DecorationData.PlacementType type)
