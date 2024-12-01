@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487ab4cc9cead194ba984c28026a53da, type: 3}
+  m_Name: crawFeather
+  m_EditorClassIdentifier: 
+  isGeneric: 0
+  uuid: 
+  type: 0
+  displayImage: {fileID: 21300000, guid: deba7282512f3d440a512d62a514db59, type: 3}
+  decorationImage: {fileID: 21300000, guid: 968ed8df62016054ca87cdced5798464, type: 3}
