@@ -220,5 +220,10 @@ public class Rating : MonoBehaviour
         Debug.Log("Enum: " + p.ToString());
         Debug.Log("Rating: " + rating);
         _ratingPerformed = true;
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+        if (gameManager)
+        {
+            gameManager.ShowRating(0);
+        }
     }
 }

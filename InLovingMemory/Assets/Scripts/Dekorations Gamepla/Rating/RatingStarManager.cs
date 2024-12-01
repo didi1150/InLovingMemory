@@ -8,12 +8,15 @@ public class RatingStarManager : MonoBehaviour
     private RatingStar[] stars;
 
 
-    public void Awake()
+    public void Start()
     {
         stars = GameObject.FindObjectsOfType<RatingStar>();
         foreach (var star in stars)
         {
-            star.SetEmpty();
+            if (star != null)
+            {
+                star.SetEmpty();
+            }
         }
     }
 
@@ -21,7 +24,7 @@ public class RatingStarManager : MonoBehaviour
     {
         rating = Math.Clamp(rating, 0, stars.Length);
 
-        for (int i = rating; i <= 0; i--)
+        for (int i = rating; i >= 0; i--)
         {
             stars[i].SetFull();
         }

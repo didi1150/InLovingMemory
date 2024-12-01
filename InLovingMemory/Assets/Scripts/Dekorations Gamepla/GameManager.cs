@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
@@ -19,6 +20,35 @@ public class GameManager : MonoBehaviour
     private static InventorySlot selectedInventorySlot;
 
 
+    public void destroyInventory()
+    {
+        GameObject.FindGameObjectWithTag("Rating Button").gameObject.SetActive(false);
+        
+        foreach (var slot in _inventorySlots)
+        {
+            slot.gameObject.SetActive(false);  
+        }
+        
+    }
+
+    public void ShowRating(int stars)
+    {
+        destroyInventory();
+        RatingStarManager manager = Instantiate(Resources.Load<RatingStarManager>("Prefabs/Rating Screen"), GameObject.FindObjectOfType<Canvas>().transform);
+        StartCoroutine(setRating(manager, stars));
+
+    }
+
+    public IEnumerator setRating(RatingStarManager manager,int r)
+    {
+        yield return new WaitForNextFrameUnit();
+        manager.setRating(r);
+    }
+    
+    
+    
+    
+    
     public bool debugGraveHitbox = false;
     public void Start()
     {

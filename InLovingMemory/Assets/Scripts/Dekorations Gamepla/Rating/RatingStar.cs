@@ -16,11 +16,18 @@ public class RatingStar : MonoBehaviour
 
     public void SetFull()
     {
-        image.sprite = full;
+        if (full != null)
+        {
+            image.sprite =full;
+        }
     }
 
     public void SetEmpty()
     {
-        image.sprite = empty;
+        if (empty != null)
+        {
+            image.sprite = empty;
+        }
+        
     }
 }

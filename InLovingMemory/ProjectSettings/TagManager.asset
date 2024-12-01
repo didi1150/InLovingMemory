@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Inventory Slots
+  - Rating Button
   layers:
   - Default
   - TransparentFX

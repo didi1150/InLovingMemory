@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 826673242}
   m_Layer: 5
   m_Name: Finish
-  m_TagString: Untagged
+  m_TagString: Rating Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
