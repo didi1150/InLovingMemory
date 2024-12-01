@@ -21,7 +21,10 @@ MonoBehaviour:
     - ... he was always the one who could light up a room ...
     - ... and make everyone laugh with his silly jokes ...
     - ... which maybe weren't that good most of the times but we all laughed anyway.
-    MemoryAudios: []
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: 38d0c4b5db2db5c478cef427425d6b44, type: 3}
+      Delay: 20
+      Volume: 0.2
     Sprite: {fileID: 21300000, guid: aa2bfe43e9cc374439106ca127499c8a, type: 3}
   - Sentences:
     - 'And you would always see him with his watch. '
@@ -32,12 +35,12 @@ MonoBehaviour:
     - ... as if he was seeing that one very good friend.
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: 24159138b224da84e8d3284e6670ce3e, type: 3}
-      Delay: 5
+      Delay: 4
       Volume: 1
     Sprite: {fileID: 21300000, guid: f548ba3d2cccd724ab04306f0b81e1e5, type: 3}
   - Sentences:
-    - Unfortunately he lost it one year ago, ...
-    - '... we looked everywhere for it, but never found it. '
+    - Unfortunately he lost the watch one year ago, ...
+    - '... we searched everywhere, but never found it. '
     - 'My grandfather was very upset about that. '
     - "To his death, he couldn\u2019t forgive himself for losing it. "
     - "I can\u2019t bare to imagine what restlessness his spirit may feel."
@@ -53,6 +56,6 @@ MonoBehaviour:
     - My Regards.
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: 24159138b224da84e8d3284e6670ce3e, type: 3}
-      Delay: 5
+      Delay: 4
       Volume: 1
     Sprite: {fileID: 21300000, guid: d54e51e1cdb901546a7416dddbff2345, type: 3}

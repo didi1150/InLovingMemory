@@ -26,7 +26,10 @@ MonoBehaviour:
     - 'Teddy and I have lived a quiet but happy life, up there in the mountains. '
     - There isn't really much for me to complain about in life, ...
     - ... but I just wish we had some more time together.
-    MemoryAudios: []
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: c880ee9232510ad408c9bb2bc1ea489f, type: 3}
+      Delay: 2
+      Volume: 0.5
     Sprite: {fileID: 21300000, guid: f8718254ba53eeb41a89301d2906d97c, type: 3}
   - Sentences:
     - You may recall the few times, ...
@@ -36,10 +39,9 @@ MonoBehaviour:
     - 'That thing was always making noise. '
     - Even though I myself didn't enjoy it as much as she did, ...
     - ... it's one of the last remains I can hold onto ...
-    - 
     MemoryAudios:
     - AudioClip: {fileID: 8300000, guid: e59c393e4c97e5247ab704922ed03291, type: 3}
-      Delay: 9
+      Delay: 12
       Volume: 1
     Sprite: {fileID: 21300000, guid: 6cd7e1319fc5a5f4bab2b614f99d111b, type: 3}
   - Sentences:

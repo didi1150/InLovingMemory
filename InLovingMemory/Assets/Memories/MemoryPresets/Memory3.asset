@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a479399efe7d6b499238a55d754d180, type: 3}
+  m_Name: Memory3
+  m_EditorClassIdentifier: 
+  MemoryScenes:
+  - Sentences:
+    - (Anonymous)
+    - Graveyard Keeper,
+    - Morgana, the black Eye, was the greatest pirate of her time.
+    - Or so she told anyone who would come across her on the streets.
+    - She stole from people of any kind getting  into a lot of trouble all the time...
+    - ...for she wanted to be know as the big bad thief in the neighbourhood.
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: bd24c597910d8e249924adf73c072785, type: 3}
+      Delay: 3
+      Volume: 0.5
+    Sprite: {fileID: 21300000, guid: 5938e199b7cd7db458967ec7403d8235, type: 3}
+  - Sentences:
+    - But by doing so she drove everyone away.
+    - Her scheming made people uncomfortable, her crow was too loud.
+    - There were a lot of things the townsfolk had issues with.
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: 7b81bd0c35df3c94592eaa25532a7804, type: 3}
+      Delay: 4
+      Volume: 0.5
+    - AudioClip: {fileID: 8300000, guid: 3b51f2827c4c3fd48bd25862213a9c8c, type: 3}
+      Delay: 1
+      Volume: 0.5
+    Sprite: {fileID: 21300000, guid: 4d370e8b89ab5804ca7e3e76082fec00, type: 3}
+  - Sentences:
+    - When she passed, it was as though time itself had paused,...
+    - ...yet no one marked the moment, no one recognized the silence.
+    - It was only after a few months the people started noticing the village had
+      gotten quiet.
+    - Morgana had died alone and no one had known.
+    - But the most devastating part was more that nobody had seen her for what she
+      actually had been.
+    MemoryAudios: []
+    Sprite: {fileID: 21300000, guid: d703e0d9ff0eb2a408f7b56ea8827509, type: 3}
+  - Sentences:
+    - "Morgana, a pirate filled with passion and the guts to fight to survive. \n\n"
+    - No challenge was too great for her, no plan too ridiculous.
+    - 'Maybe her unfulfilled dreams will find their time in another life.
+
+
+'
+    - This request comes from an unknown fan who would be most grateful...
+    - 'if you could arrange a resting place for Morgana, the black Eye, the greatest
+      pirate of her time.
+
+'
+    - Best Wishes
+    MemoryAudios:
+    - AudioClip: {fileID: 8300000, guid: 7078cba8b7da44c4c8e152b624ccfa60, type: 3}
+      Delay: 1
+      Volume: 0.5
+    Sprite: {fileID: 21300000, guid: 4899757edfaa36c429420d3e948035a5, type: 3}
