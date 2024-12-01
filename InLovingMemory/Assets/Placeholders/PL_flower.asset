@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487ab4cc9cead194ba984c28026a53da, type: 3}
   m_Name: PL_flower
   m_EditorClassIdentifier: 
+  isGeneric: 1
+  uuid: 
   type: 0
   displayImage: {fileID: 21300000, guid: 34c56c9e4a415234db4c71604dae93df, type: 3}
   decorationImage: {fileID: 21300000, guid: daced4f047d5e7b4698f80c252594589, type: 3}

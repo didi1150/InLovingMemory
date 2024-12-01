@@ -8,7 +8,10 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     public Image displayImage;
-    private DecorationData decoration;
+    
+    [SerializeField]
+    private DecorationData data;
+    
     private static String decorationPrefabPath = "Prefabs/DecorationPrefab";
     private static GameObject decorationPrefab;
 
@@ -20,35 +23,41 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void setData(DecorationData data)
     {
-        decoration = data;
-        if (decoration)
+        this.data = data;
+        if (this.data)
         {
-            displayImage.sprite = decoration.displayImage;
+            displayImage.sprite = this.data.displayImage;
         }
+    }
+
+    public DecorationData getData()
+    {
+        return data;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!GameManager.somethingSelected())
         {
-            if (decoration != null)
+            if (data != null)
             {
-                instantiateDecoration(eventData.position);
+                instantiateDecoration();
             }
         }
 
     }
 
-    public GameObject instantiateDecoration(Vector3 position)
+    public GameObject instantiateDecoration()
     {
         if (GameManager.somethingSelected()) return null;
-        GameObject newDecoration = Instantiate(decorationPrefab, position, Quaternion.identity);
+        GameObject newDecoration = Instantiate(decorationPrefab, new Vector3(), Quaternion.identity);
         newDecoration.transform.SetParent(transform);
         Decoration dec = newDecoration.GetComponent<Decoration>();
         if (dec)
         {
-            dec.setData(decoration);
+            dec.setData(data);
             GameManager.select(dec);
+            GameManager.setSelectedInventorySlot(this);
         }
         return newDecoration;
     }

@@ -218,14 +218,14 @@ RectTransform:
   m_Children:
   - {fileID: 167711462}
   - {fileID: 1703713089}
-  - {fileID: 839518257}
-  - {fileID: 1474673524}
-  - {fileID: 1751863764}
   - {fileID: 82648041}
-  - {fileID: 1997685533}
-  - {fileID: 256253676}
+  - {fileID: 1474673524}
   - {fileID: 399030835}
   - {fileID: 485363847}
+  - {fileID: 256253676}
+  - {fileID: 839518257}
+  - {fileID: 1751863764}
+  - {fileID: 1997685533}
   - {fileID: 1276537996}
   - {fileID: 1767965281}
   - {fileID: 781619801}
@@ -272,8 +272,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42.787}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -539, y: -298}
-  m_SizeDelta: {x: 117.4064, y: 67.6738}
+  m_AnchoredPosition: {x: -543.0188, y: -301.71967}
+  m_SizeDelta: {x: 121.9571, y: 67.6738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &82648042
 CanvasGroup:
@@ -1503,8 +1503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -327, y: -300}
-  m_SizeDelta: {x: 117.4064, y: 67.6738}
+  m_AnchoredPosition: {x: -308.60138, y: -300}
+  m_SizeDelta: {x: 127.6933, y: 67.6738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1474673525
 CanvasGroup:
@@ -2180,6 +2180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   task: {fileID: 11400000, guid: cc994fbb1f7678245b3b469384e0ea25, type: 2}
+  debugGraveHitbox: 0
 --- !u!1 &1977390531
 GameObject:
   m_ObjectHideFlags: 0
