@@ -13,6 +13,21 @@ public class startbutton : MonoBehaviour
         SceneManager.LoadScene(sceneId);
     }
 
+    public void GoToLevelSelect()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("1"))
+        {
+            levelSelect.scene1done = true;
+        }else if (SceneManager.GetActiveScene().name.Contains("2"))
+        {
+            levelSelect.scene2done = true;
+        }else if (SceneManager.GetActiveScene().name.Contains("3"))
+        {
+            levelSelect.scene3done = true;
+        }
+        SceneManager.LoadScene("levels");
+    }
+
     public void doExitGame()
     {
         Application.Quit();
