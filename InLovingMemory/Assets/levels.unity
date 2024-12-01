@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memory1: {fileID: 11400000, guid: 3509fe53a88436748ab78bbe241c4c91, type: 2}
   memory2: {fileID: 11400000, guid: 4c33381d35b91b245bf5ba0a09a3dc3d, type: 2}
-  memory3: {fileID: 11400000, guid: 4c33381d35b91b245bf5ba0a09a3dc3d, type: 2}
+  memory3: {fileID: 11400000, guid: 8c98d0e3645694f4485cb2991dc7f656, type: 2}
 --- !u!4 &312902377
 Transform:
   m_ObjectHideFlags: 0
@@ -2498,8 +2498,8 @@ RectTransform:
   - {fileID: 260000528}
   - {fileID: 53209803}
   - {fileID: 1339515652}
-  - {fileID: 1611013341}
   - {fileID: 152378819}
+  - {fileID: 1611013341}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
