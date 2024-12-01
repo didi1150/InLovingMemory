@@ -11,9 +11,9 @@ using UnityEngine.UIElements;
 public class levelSelect : MonoBehaviour
 {
     private Button _button;
-    public static Boolean scene1done = false;
-    public static Boolean scene2done = false;
-    public static Boolean scene3done = false;
+    public static Boolean scene1done = true;
+    public static Boolean scene2done = true;
+    public static Boolean scene3done = true;
 
     private void Awake()
     {
@@ -27,38 +27,7 @@ public class levelSelect : MonoBehaviour
 
     private void Update()
     {
-        
-    }
 
-    public void nextScene1(int sceneId)
-    {
-        SceneManager.LoadScene(sceneId);
-    }
-    
-    public void nextScene2(int sceneId)
-    {
-        if (scene1done)
-        {
-           SceneManager.LoadScene(sceneId); 
-        }
-        else
-        {
-            EditorUtility.DisplayDialog("Locked", "This level isn´t unlocked yet. Please finish earlier levels first.",
-                "Ok");
-        }
-    }
-    
-    public void nextScene3(int sceneId)
-    {
-        if (scene2done)
-        {
-            SceneManager.LoadScene(sceneId); 
-        }
-        else
-        {
-            EditorUtility.DisplayDialog("Locked", "This level isn´t unlocked yet. Please finish earlier levels first.",
-                "Ok");
-        }
     }
 
     public void NextScene(int level)
@@ -80,8 +49,8 @@ public class levelSelect : MonoBehaviour
         }
         else
         {
-            EditorUtility.DisplayDialog("Locked", "This level isn´t unlocked yet. Please finish earlier levels first.",
-                "Ok");
+            //EditorUtility.DisplayDialog("Locked", "This level isn´t unlocked yet. Please finish earlier levels first.",
+            //    "Ok");
         }
     }
     

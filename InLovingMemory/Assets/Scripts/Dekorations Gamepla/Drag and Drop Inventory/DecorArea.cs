@@ -14,6 +14,7 @@ public class DecorArea : MonoBehaviour, IPointerClickHandler
 
     public void Awake()
     {
+        ClearList();
         group = GetComponent<CanvasGroup>();
         _decorAreas.Add(this);
     }

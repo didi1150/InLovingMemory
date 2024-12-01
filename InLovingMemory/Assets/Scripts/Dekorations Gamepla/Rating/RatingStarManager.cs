@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RatingStarManager : MonoBehaviour
@@ -27,8 +28,8 @@ public class RatingStarManager : MonoBehaviour
         for (int i = rating; i >= 0; i--)
         {
             stars[i].SetFull();
+
         }
-        
     }
     
     
